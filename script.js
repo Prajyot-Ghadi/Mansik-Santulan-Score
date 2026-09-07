@@ -241,17 +241,24 @@
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     })
-      .then(function (response) {
-        if (!response.ok) {
-          if (response.status === 422) {
-            return response.json().then(function () {
-              throw new Error("The backend rejected some values. Please review your entries and try again.");
-            });
-          }
-          throw new Error("Something went wrong while generating your prediction. Please try again.");
-        }
-        return response.json();
-      })
+    .then(async function (response) {
+  const text = await response.text();
+
+  console.log("Status:", response.status);
+  console.log("Response:", text);
+
+  if (!response.ok) {
+    throw new Error(
+      `API Error ${response.status}: ${text || "Empty response from server"}`
+    );
+  }
+
+  if (!text) {
+    throw new Error("The server returned an empty response.");
+  }
+
+  return JSON.parse(text);
+})
       .then(function (data) {
         setLoading(false);
         const score = Number(data.predicted_mental_health_score);
