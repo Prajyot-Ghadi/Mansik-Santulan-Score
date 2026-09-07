@@ -7,7 +7,7 @@
 (function () {
   "use strict";
 
-  const API_URL = "/predict";
+  const API_URL = "https://mansik-santulan-score-1-ey2k.onrender.com";
 
   /* ---------------- Mobile nav ---------------- */
   const navToggle = document.getElementById("navToggle");
