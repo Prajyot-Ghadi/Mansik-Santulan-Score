@@ -7,7 +7,7 @@
 (function () {
   "use strict";
 
-  const API_URL = "http://127.0.0.1:8000/predict";
+  const API_URL = "https://mansik-santulan-score-htur.onrender.com";
 
   /* ---------------- Mobile nav ---------------- */
   const navToggle = document.getElementById("navToggle");
